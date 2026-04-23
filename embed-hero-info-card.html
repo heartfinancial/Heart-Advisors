@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hero Info Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red:      #E30613;
+    --red-dark: #B3050F;
+    --red-soft: #FEECEE;
+    --navy:     #111827;
+    --mid-gray: #6B7280;
+    --white:    #FFFFFF;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html, body {
+    background: transparent !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 30px 30px;    /* top padding leaves room for floating badge */
+    min-height: 100vh;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ========== CARD WRAPPER ========== */
+  .wrap {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+  }
+
+  /* ========== GLASS CARD ========== */
+  .info-card {
+    background: rgba(17,24,39,0.85);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 36px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+  }
+
+  .info-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+
+  .info-title {
+    font-size: 24px;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .info-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .info-icon {
+    width: 40px; height: 40px;
+    min-width: 40px;
+    background: rgba(227,6,19,0.15);
+    color: var(--red);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-icon svg {
+    width: 20px; height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .item-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+
+  .item-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.45;
+  }
+
+  .info-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--red);
+    color: var(--white);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+
+  .info-cta:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(227,6,19,0.35);
+  }
+
+  .info-cta svg {
+    width: 16px; height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ========== FLOATING AWARD BADGE ========== */
+  .floating-card {
+    position: absolute;
+    top: -24px; right: -20px;
+    background: var(--white);
+    border-radius: 14px;
+    padding: 16px 20px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 3;
+  }
+
+  .floating-icon {
+    width: 36px; height: 36px;
+    background: var(--red-soft);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--red);
+    flex-shrink: 0;
+  }
+
+  .floating-icon svg {
+    width: 20px; height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .floating-title {
+    font-size: 14px;
+    color: var(--navy);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .floating-sub {
+    font-size: 11px;
+    color: var(--mid-gray);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 520px) {
+    body { padding: 40px 12px 20px; }
+    .info-card { padding: 28px 22px; }
+    .info-title { font-size: 21px; }
+    .floating-card {
+      top: -18px; right: 8px;
+      padding: 12px 16px;
+    }
+    .floating-icon { width: 32px; height: 32px; }
+    .floating-title { font-size: 13px; }
+    .floating-sub { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <!-- Glass card -->
+    <div class="info-card">
+      <span class="info-tag">What you can expect</span>
+      <h3 class="info-title">Advice that works as hard as you do.</h3>
+
+      <ul class="info-list">
+        <li>
+          <div class="info-icon">
+            <!-- brain -->
+            <svg viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Behavioural coaching</div>
+            <div class="item-sub">Understand the why behind your money habits</div>
+          </div>
+        </li>
+
+        <li>
+          <div class="info-icon">
+            <!-- target -->
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Values-aligned strategy</div>
+            <div class="item-sub">Money that supports what matters most</div>
+          </div>
+        </li>
+
+        <li>
+          <div class="info-icon">
+            <!-- trending up -->
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Ongoing partnership</div>
+            <div class="item-sub">Advice that evolves with your life</div>
+          </div>
+        </li>
+
+        <li>
+          <div class="info-icon">
+            <!-- shield -->
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Holistic &amp; honest</div>
+            <div class="item-sub">Retirement, tax, estate, insurance &amp; more</div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Change href to your Wix contact section, e.g. https://www.heart1stop.com/#contact -->
+      <a href="#contact" target="_top" class="info-cta">
+        Start with a free consultation
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- Floating award badge -->
+    <div class="floating-card">
+      <div class="floating-icon">
+        <!-- trophy -->
+        <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+      </div>
+      <div>
+        <div class="floating-title">Advice Advocate</div>
+        <div class="floating-sub">Of the Year 2025</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

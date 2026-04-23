@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Heart Financial Advisers — Townsville</title>
+<meta name="description" content="Behavioural, values-aligned financial advice for North Queensland. Proudly Townsville. Advice Advocate of the Year 2025." />
+</head>
+<body style="margin:0;padding:0;background:#0b1220;color:#fff;font-family:Inter,sans-serif;">
+
+  <!-- Part 1: nav → testimonials -->
+  <iframe src="heart-part-1.html"
+          style="width:100%;border:0;display:block;"
+          scrolling="no"
+          onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px'"></iframe>
+
+  <!-- Blog section placeholder (we'll wire this up later if you want a blog on Netlify instead of Wix) -->
+
+  <!-- Part 2: award → footer (with anchor for contact) -->
+  <iframe src="heart-part-2.html"
+          id="part2"
+          style="width:100%;border:0;display:block;"
+          scrolling="no"
+          onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px'"></iframe>
+
+  <script>
+    // Keep iframe heights synced as content/viewport changes
+    function syncHeights() {
+      document.querySelectorAll('iframe').forEach(f => {
+        try { f.style.height = f.contentWindow.document.body.scrollHeight + 'px'; } catch(e){}
+      });
+    }
+    window.addEventListener('resize', syncHeights);
+    setTimeout(syncHeights, 600);
+  </script>
+
+</body>
+</html>

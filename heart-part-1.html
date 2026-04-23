@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  HEART FINANCIAL ADVISERS — PART 1 (Top of page)
+  ============================================================
+  WHAT THIS IS:
+    Self-contained HTML embed for Wix. Contains:
+      - Nav
+      - Hero
+      - Trust bar
+      - About Stu
+      - Differentiators
+      - Services
+      - Philosophy
+      - Process
+      - Testimonials
+
+  WHERE IT GOES IN WIX:
+    Wix Studio → Add (+) → Embed Code → Embed HTML → Enter Code
+    → paste this entire file. Resize iframe to ~100% width × ~5200px tall
+    (autoscroll off). Place it as the FIRST section on the page.
+
+  AFTER THIS EMBED, ADD:
+    2. Native Wix Blog section (add an anchor named "blog")
+    3. Part 2 embed (heart-part-2.html)
+    4. Set a Wix page anchor named "contact" inside the Part 2 embed area
+
+  CROSS-EMBED LINKS:
+    All "Book Consultation" / #contact links use target="_top" so they
+    scroll the PARENT Wix page to the Part 2 contact section.
+    The News link in the nav jumps to the Wix Blog section anchor (#blog).
+
+  TODO BEFORE GOING LIVE:
+    - Upload logo-heart-financial.png + stu-varidel-portrait.jpg to Wix
+      Media Manager and replace the src paths below with the Wix URLs.
+    - Upload Value-of-advice.pdf + Why-work-with-an-advisor.pdf
+      and update those PDF hrefs.
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heart Financial Advisers | Stu Varidel | Townsville</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #E30613; --red-dark: #B3050F; --red-soft: #FEECEE;
+      --navy: #111827; --navy-soft: #1F2937; --charcoal: #374151;
+      --mid-gray: #6B7280; --soft-gray: #9CA3AF;
+      --light: #F9FAFB; --lighter: #F3F4F6; --white: #FFFFFF;
+      --border: #E5E7EB;
+      --radius: 14px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+      --shadow-lg: 0 25px 50px rgba(0,0,0,0.12);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px; line-height: 1.6; color: var(--charcoal);
+      background: var(--white); -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 { font-family: 'Inter', sans-serif; line-height: 1.15; color: var(--navy); font-weight: 700; letter-spacing: -0.02em; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    .section-label { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+    .section-title { font-size: clamp(30px, 4vw, 46px); color: var(--navy); margin-bottom: 16px; letter-spacing: -0.02em; }
+    .section-subtitle { font-size: 18px; color: var(--mid-gray); max-width: 640px; line-height: 1.7; }
+
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: 'Inter', sans-serif; letter-spacing: 0.2px; }
+    .btn svg { width: 18px; height: 18px; }
+    .btn-primary { background: var(--red); color: var(--white); border-color: var(--red); }
+    .btn-primary:hover { background: var(--red-dark); border-color: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(227,6,19,0.25); }
+    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.3); }
+    .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+    .btn-outline-dark { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+
+    .divider-red { width: 48px; height: 3px; background: var(--red); border-radius: 2px; margin-bottom: 28px; }
+
+    .icon { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-sm { width: 16px; height: 16px; }
+    .icon-lg { width: 28px; height: 28px; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; transition: var(--transition); background: rgba(15,23,42,0.85); backdrop-filter: blur(12px); }
+    nav.scrolled { background: rgba(255,255,255,0.97); box-shadow: 0 1px 0 rgba(0,0,0,0.05); }
+    .nav-inner { max-width: 1240px; margin: 0 auto; height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 44px; width: auto; filter: brightness(0) invert(1); transition: var(--transition); }
+    nav.scrolled .nav-logo img { filter: none; }
+    .nav-links { display: flex; align-items: center; gap: 26px; list-style: none; }
+    .nav-links > li > a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.9); transition: var(--transition); display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+    nav.scrolled .nav-links > li > a { color: var(--charcoal); }
+    .nav-links a:hover { color: var(--red); }
+    nav.scrolled .nav-links a:hover { color: var(--red); }
+    .nav-phone { font-weight: 700 !important; color: var(--white) !important; }
+    nav.scrolled .nav-phone { color: var(--navy) !important; }
+    .nav-phone:hover { color: var(--red) !important; }
+    .nav-cta { background: var(--red) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--red-dark) !important; color: white !important; transform: translateY(-1px); }
+
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(-8px); background: var(--white); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow-md); min-width: 240px; padding: 8px; opacity: 0; visibility: hidden; transition: var(--transition); list-style: none; }
+    .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; color: var(--charcoal) !important; font-size: 14px; font-weight: 500; border-radius: 8px; transition: var(--transition); }
+    .nav-dropdown-menu a:hover { background: var(--red-soft); color: var(--red) !important; }
+    .nav-dropdown-menu a svg { width: 16px; height: 16px; color: var(--red); flex-shrink: 0; }
+    .nav-chevron { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: var(--transition); }
+    .nav-dropdown:hover .nav-chevron { transform: rotate(180deg); }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--white); transition: var(--transition); border-radius: 2px; }
+    nav.scrolled .nav-hamburger span { background: var(--navy); }
+
+    .nav-mobile-menu { display: none; position: absolute; top: 76px; left: 0; right: 0; background: var(--white); padding: 16px 24px 24px; box-shadow: var(--shadow-md); z-index: 999; flex-direction: column; gap: 0; max-height: 80vh; overflow-y: auto; }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a { display: flex; align-items: center; gap: 10px; padding: 14px 8px; font-size: 16px; font-weight: 500; color: var(--charcoal); border-bottom: 1px solid var(--border); }
+    .nav-mobile-menu a:last-child { border-bottom: none; }
+    .nav-mobile-menu a svg { width: 18px; height: 18px; color: var(--red); }
+
+    /* HERO */
+    #hero { min-height: 90vh; background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #111827 100%); display: flex; align-items: center; position: relative; overflow: hidden; padding: 80px 0; }
+    #hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
+    #hero::after { content: ''; position: absolute; top: 20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(227,6,19,0.08) 0%, transparent 60%); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); padding: 8px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; margin-bottom: 28px; }
+    .hero-badge-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; box-shadow: 0 0 0 4px rgba(227,6,19,0.2); animation: pulse 2.4s infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(227,6,19,0.2); } 50% { box-shadow: 0 0 0 8px rgba(227,6,19,0); } }
+    .hero-title { font-size: clamp(38px, 5.2vw, 64px); color: var(--white); margin-bottom: 24px; line-height: 1.1; letter-spacing: -0.025em; }
+    .hero-title .accent { color: var(--red); font-weight: 800; }
+    .hero-desc { font-size: 18px; color: rgba(255,255,255,0.65); margin-bottom: 40px; line-height: 1.75; max-width: 540px; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 56px; }
+    .hero-stats { display: flex; gap: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+    .hero-stat-number { font-size: 36px; color: var(--white); font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+    .hero-stat-number span { color: var(--red); }
+    .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .hero-info-card { position: relative; width: 100%; max-width: 460px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 36px; backdrop-filter: blur(20px); box-shadow: 0 25px 60px rgba(0,0,0,0.4); }
+    .hero-info-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+    .hero-info-title { font-size: 24px; color: var(--white); line-height: 1.25; margin-bottom: 28px; font-weight: 700; }
+    .hero-info-list { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-bottom: 28px; }
+    .hero-info-list li { display: flex; align-items: flex-start; gap: 14px; }
+    .hero-info-icon { width: 40px; height: 40px; min-width: 40px; background: rgba(227,6,19,0.15); color: var(--red); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .hero-info-item-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+    .hero-info-item-sub { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.45; }
+    .hero-info-cta { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 20px; background: var(--red); color: var(--white); border-radius: 10px; font-size: 14px; font-weight: 600; transition: var(--transition); }
+    .hero-info-cta:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(227,6,19,0.35); color: white; }
+    .hero-info-cta svg { width: 16px; height: 16px; }
+    .hero-floating-card { position: absolute; top: -24px; right: -20px; background: var(--white); border-radius: 14px; padding: 16px 20px; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 12px; z-index: 3; }
+    .hero-floating-card .icon-bg { width: 36px; height: 36px; background: var(--red-soft); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--red); flex-shrink: 0; }
+    .hero-floating-card-title { font-size: 14px; color: var(--navy); font-weight: 700; line-height: 1.2; }
+    .hero-floating-card-sub { font-size: 11px; color: var(--mid-gray); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+    /* TRUST BAR */
+    #trust-bar { background: var(--white); border-bottom: 1px solid var(--border); padding: 24px 0; }
+    .trust-items { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: var(--mid-gray); }
+    .trust-item svg { color: var(--red); width: 18px; height: 18px; }
+    .trust-divider { width: 1px; height: 24px; background: var(--border); }
+
+    /* ABOUT */
+    #about { padding: 110px 0; background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 72px; align-items: center; }
+    .about-visual { position: relative; }
+    .about-photo { width: 100%; aspect-ratio: 4/5; border-radius: 20px; overflow: hidden; background: linear-gradient(135deg, #1F2937 0%, #0F172A 100%); position: relative; }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .about-badge { position: absolute; bottom: 28px; right: -20px; background: var(--white); border-radius: 14px; padding: 18px 24px; box-shadow: var(--shadow-lg); text-align: center; }
+    .about-badge-num { font-size: 40px; color: var(--red); font-weight: 700; line-height: 1; }
+    .about-badge-label { font-size: 11px; color: var(--mid-gray); margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+    .about-content p { font-size: 17px; color: var(--mid-gray); line-height: 1.8; margin-bottom: 20px; }
+    .about-quote { background: var(--red-soft); border-left: 3px solid var(--red); border-radius: 0 12px 12px 0; padding: 22px 28px; margin: 32px 0; }
+    .about-quote-text { font-size: 18px; color: var(--navy); line-height: 1.6; font-weight: 500; font-style: italic; }
+
+    /* DIFFERENTIATORS */
+    #differentiators { padding: 110px 0; background: var(--light); }
+    .diff-header { text-align: center; margin-bottom: 60px; }
+    .diff-header .section-subtitle { margin: 0 auto; }
+    .diff-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .diff-card { background: var(--white); border-radius: var(--radius); padding: 36px; border: 1px solid var(--border); transition: var(--transition); position: relative; overflow: hidden; }
+    .diff-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); transform: scaleX(0); transition: var(--transition); transform-origin: left; }
+    .diff-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .diff-card:hover::before { transform: scaleX(1); }
+    .diff-card-num { font-size: 56px; color: var(--lighter); line-height: 1; margin-bottom: 12px; font-weight: 700; }
+    .diff-card-icon { width: 52px; height: 52px; background: var(--red-soft); color: var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .diff-card h3 { font-size: 20px; color: var(--navy); margin-bottom: 10px; }
+    .diff-card p { font-size: 15px; color: var(--mid-gray); line-height: 1.7; }
+
+    /* SERVICES */
+    #services { padding: 110px 0; background: var(--white); }
+    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; flex-wrap: wrap; gap: 24px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .service-card { background: var(--light); border-radius: var(--radius); padding: 32px; border: 1px solid var(--border); transition: var(--transition); }
+    .service-card:hover { background: var(--navy); border-color: var(--navy); transform: translateY(-4px); }
+    .service-card:hover .service-icon { background: rgba(227,6,19,0.2); color: #fff; }
+    .service-card:hover .service-title { color: var(--white); }
+    .service-card:hover .service-desc { color: rgba(255,255,255,0.6); }
+    .service-icon { width: 48px; height: 48px; background: var(--red-soft); color: var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; transition: var(--transition); }
+    .service-title { font-size: 19px; color: var(--navy); margin-bottom: 8px; font-weight: 700; transition: var(--transition); }
+    .service-desc { font-size: 14px; color: var(--mid-gray); line-height: 1.65; transition: var(--transition); }
+
+    /* PHILOSOPHY */
+    #philosophy { padding: 110px 0; background: var(--navy); position: relative; overflow: hidden; }
+    #philosophy::before { content: ''; position: absolute; top: -20%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(227,6,19,0.06) 0%, transparent 60%); }
+    .philosophy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; position: relative; z-index: 1; }
+    .philosophy-content .section-title { color: var(--white); }
+    .philosophy-content p { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.8; margin-bottom: 18px; }
+    .philosophy-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .pillar { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 22px; transition: var(--transition); }
+    .pillar:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); transform: translateY(-2px); }
+    .pillar-icon { width: 38px; height: 38px; background: rgba(227,6,19,0.12); color: var(--red); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .pillar-title { font-size: 15px; color: var(--white); margin-bottom: 6px; font-weight: 700; }
+    .pillar-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.55; }
+
+    /* PROCESS */
+    #process { padding: 110px 0; background: var(--light); }
+    .process-header { text-align: center; margin-bottom: 72px; }
+    .process-header .section-subtitle { margin: 0 auto; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 30px; left: 12.5%; right: 12.5%; height: 2px; background: linear-gradient(to right, var(--red-soft), var(--red), var(--red-soft)); z-index: 0; opacity: 0.5; }
+    .process-step { text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+    .step-number { width: 60px; height: 60px; background: var(--white); border: 2px solid var(--red); color: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; margin: 0 auto 24px; box-shadow: 0 0 0 6px var(--light); }
+    .step-title { font-size: 18px; color: var(--navy); margin-bottom: 10px; font-weight: 700; }
+    .step-desc { font-size: 14px; color: var(--mid-gray); line-height: 1.65; }
+
+    /* TESTIMONIALS */
+    #testimonials { padding: 110px 0; background: var(--white); }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-header .section-subtitle { margin: 0 auto; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+    .testimonial-card { background: var(--light); border-radius: var(--radius); padding: 36px; border: 1px solid var(--border); transition: var(--transition); display: flex; flex-direction: column; position: relative; }
+    .testimonial-card::before { content: '"'; position: absolute; top: 12px; right: 24px; font-size: 80px; color: var(--red-soft); line-height: 1; z-index: 0; }
+    .testimonial-card > * { position: relative; z-index: 1; }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .testimonial-stars { display: flex; gap: 2px; margin-bottom: 18px; color: #F59E0B; }
+    .testimonial-text { font-size: 15px; color: var(--charcoal); line-height: 1.75; margin-bottom: 24px; flex: 1; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--white); flex-shrink: 0; }
+    .author-name { font-weight: 600; font-size: 15px; color: var(--navy); }
+    .author-title { font-size: 13px; color: var(--mid-gray); }
+    .testimonials-footer { text-align: center; padding: 28px; background: var(--light); border-radius: var(--radius); border: 1px solid var(--border); }
+    .overall-rating { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .rating-number { font-size: 44px; color: var(--navy); font-weight: 700; line-height: 1; }
+    .rating-details { text-align: left; }
+    .rating-stars { display: flex; gap: 2px; margin-bottom: 4px; color: #F59E0B; }
+    .rating-label { font-size: 13px; color: var(--mid-gray); }
+
+    /* SCROLL ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .nav-links > li:not(.nav-phone-wrap):not(.nav-cta-wrap) { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 960px) {
+      .hero-grid, .about-grid, .philosophy-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-visual { max-width: 400px; margin: 0 auto; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .process-steps::before { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .philosophy-pillars { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .services-grid, .process-steps { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-stats { gap: 24px; }
+      .trust-divider { display: none; }
+      .trust-items { gap: 16px; }
+      .hero-floating-card { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SVG ICON SPRITE -->
+  <svg width="0" height="0" style="position:absolute;">
+    <defs>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+      <symbol id="i-check-circle" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+      <symbol id="i-trending" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+      <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z"/></symbol>
+      <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+      <symbol id="i-file-text" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></symbol>
+      <symbol id="i-file-pdf" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15h1a1 1 0 0 0 0-2H9v4"/><path d="M13 13v4h1a2 2 0 0 0 0-4h-1z"/></symbol>
+      <symbol id="i-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/></symbol>
+      <symbol id="i-book-open" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+      <symbol id="i-news" viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+      <symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="logo-heart-financial.png" alt="Heart Financial Advisers" onerror="this.style.display='none'" />
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li class="nav-dropdown">
+          <a>Resources <svg class="nav-chevron"><use href="#i-chevron-down"/></svg></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="Value-of-advice.pdf" target="_blank"><svg><use href="#i-file-pdf"/></svg>Value of Advice</a></li>
+            <li><a href="Why-work-with-an-advisor.pdf" target="_blank"><svg><use href="#i-file-pdf"/></svg>Working With Us</a></li>
+            <li><a href="https://heart.smartonline.com.au/calculators/" target="_blank"><svg><use href="#i-calculator"/></svg>Calculators</a></li>
+            <!-- Jumps to Wix Blog section on parent page (anchor "blog") -->
+            <li><a href="/#blog" target="_top"><svg><use href="#i-news"/></svg>News &amp; Updates</a></li>
+          </ul>
+        </li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="tel:1300861143" class="nav-phone">1300 861 143</a></li>
+        <!-- Jumps to Part 2 contact section on parent page (anchor "contact") -->
+        <li><a href="/#contact" target="_top" class="nav-cta">Book Consultation</a></li>
+      </ul>
+
+      <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="nav-mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a href="#services" onclick="closeMenu()">Services</a>
+      <a href="#philosophy" onclick="closeMenu()">Philosophy</a>
+      <a href="Value-of-advice.pdf" target="_blank"><svg><use href="#i-file-pdf"/></svg>Value of Advice</a>
+      <a href="Why-work-with-an-advisor.pdf" target="_blank"><svg><use href="#i-file-pdf"/></svg>Working With Us</a>
+      <a href="https://heart.smartonline.com.au/calculators/" target="_blank"><svg><use href="#i-calculator"/></svg>Calculators</a>
+      <a href="/#blog" target="_top"><svg><use href="#i-news"/></svg>News</a>
+      <a href="#testimonials" onclick="closeMenu()">Reviews</a>
+      <a href="tel:1300861143" style="color:var(--navy);font-weight:700;"><svg><use href="#i-phone"/></svg>1300 861 143</a>
+      <a href="/#contact" target="_top" style="color:var(--red);font-weight:700;">Book Consultation</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge"><div class="hero-badge-dot"></div>Townsville &bull; Over 20 Years of Experience</div>
+          <h1 class="hero-title">Sound financial<br>advice built for<br><span class="accent">your life.</span></h1>
+          <p class="hero-desc">Everyone needs sound professional financial advice to navigate life's complexities. At Heart Financial Advisers, Stu Varidel delivers advice that's uniquely yours — blending technical expertise with behavioural coaching.</p>
+          <div class="hero-buttons">
+            <a href="/#contact" target="_top" class="btn btn-primary">Book a Free Consultation <svg><use href="#i-arrow-right"/></svg></a>
+            <a href="tel:1300861143" class="btn btn-outline"><svg><use href="#i-phone"/></svg> 1300 861 143</a>
+          </div>
+          <div class="hero-stats">
+            <div><div class="hero-stat-number">20<span>+</span></div><div class="hero-stat-label">Years Experience</div></div>
+            <div><div class="hero-stat-number">22<span>yr</span></div><div class="hero-stat-label">Longest Client</div></div>
+            <div><div class="hero-stat-number">100<span>%</span></div><div class="hero-stat-label">Client-Focused</div></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-info-card">
+            <span class="hero-info-tag">What you can expect</span>
+            <h3 class="hero-info-title">Advice that works as hard as you do.</h3>
+            <ul class="hero-info-list">
+              <li><div class="hero-info-icon"><svg class="icon"><use href="#i-brain"/></svg></div><div><div class="hero-info-item-title">Behavioural coaching</div><div class="hero-info-item-sub">Understand the why behind your money habits</div></div></li>
+              <li><div class="hero-info-icon"><svg class="icon"><use href="#i-target"/></svg></div><div><div class="hero-info-item-title">Values-aligned strategy</div><div class="hero-info-item-sub">Money that supports what matters most</div></div></li>
+              <li><div class="hero-info-icon"><svg class="icon"><use href="#i-trending"/></svg></div><div><div class="hero-info-item-title">Ongoing partnership</div><div class="hero-info-item-sub">Advice that evolves with your life</div></div></li>
+              <li><div class="hero-info-icon"><svg class="icon"><use href="#i-shield"/></svg></div><div><div class="hero-info-item-title">Holistic &amp; honest</div><div class="hero-info-item-sub">Retirement, tax, estate, insurance &amp; more</div></div></li>
+            </ul>
+            <a href="/#contact" target="_top" class="hero-info-cta">Start with a free consultation <svg><use href="#i-arrow-right"/></svg></a>
+          </div>
+          <div class="hero-floating-card">
+            <div class="icon-bg"><svg class="icon"><use href="#i-trophy"/></svg></div>
+            <div><div class="hero-floating-card-title">Advice Advocate</div><div class="hero-floating-card-sub">Of the Year 2025</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div id="trust-bar">
+    <div class="container">
+      <div class="trust-items">
+        <div class="trust-item"><svg class="icon"><use href="#i-shield"/></svg>AR 324007 &bull; Sentry Advice (AFSL 227748)</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><svg class="icon"><use href="#i-check-circle"/></svg>ABN 80 124 246 877</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><svg class="icon"><use href="#i-pin"/></svg>Level 1, 41–49 Sturt St, Townsville QLD</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><svg class="icon"><use href="#i-clock"/></svg>Est. 2003</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual fade-in">
+          <div class="about-photo">
+            <img src="stu-varidel-portrait.jpg" alt="Stu Varidel" onerror="this.src='stu-varidel-transparent.png'" />
+          </div>
+          <div class="about-badge"><div class="about-badge-num">20+</div><div class="about-badge-label">Years<br>Experience</div></div>
+        </div>
+        <div class="about-content fade-in fade-in-delay-1">
+          <span class="section-label">Meet Stu Varidel</span>
+          <h2 class="section-title">Every client is unique. Your advice should be too.</h2>
+          <div class="divider-red"></div>
+          <p>Our success via our Principal, Stu Varidel, stems from his understanding that every client is unique and that financial advice is only a small part of what you need. When you partner with Stu, you know you're getting advice tailored to your individual needs — advice that evolves as your lifestyle does.</p>
+          <p>Based in Townsville, Stu brings over 20 years of experience as a licensed financial adviser and holds ASIC registration with robust compliance frameworks. His approach stands apart because it blends technical expertise with behavioural coaching, making financial advice genuinely holistic and client-focused.</p>
+          <div class="about-quote"><p class="about-quote-text">"We pride ourselves on our pragmatic and honest approach. Advice that works is advice that fits your life — not just the numbers."</p></div>
+          <a href="/#contact" target="_top" class="btn btn-primary">Work with Stu <svg><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATORS -->
+  <section id="differentiators">
+    <div class="container">
+      <div class="diff-header fade-in">
+        <span class="section-label">What Sets Us Apart</span>
+        <h2 class="section-title">Advice that goes beyond the numbers</h2>
+        <p class="section-subtitle">Four pillars that combine to deliver genuinely transformative financial advice.</p>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-card fade-in fade-in-delay-1"><div class="diff-card-num">01</div><div class="diff-card-icon"><svg class="icon"><use href="#i-brain"/></svg></div><h3>Behavioural Finance Expertise</h3><p>Stu uses behavioural finance principles to help you understand your money habits and emotional triggers. Advice isn't just about numbers — it's about the mindset and decision-making that creates lasting change.</p></div>
+        <div class="diff-card fade-in fade-in-delay-2"><div class="diff-card-num">02</div><div class="diff-card-icon"><svg class="icon"><use href="#i-target"/></svg></div><h3>Ongoing Accountability Coaching</h3><p>Instead of a one-off plan, Stu offers ongoing coaching to keep you accountable and confident. This is rare in traditional models focused only on transactions — Stu stays with you through every life stage.</p></div>
+        <div class="diff-card fade-in fade-in-delay-3"><div class="diff-card-num">03</div><div class="diff-card-icon"><svg class="icon"><use href="#i-compass"/></svg></div><h3>Values-Aligned Strategy</h3><p>Stu aligns financial strategies with your personal values and life goals. Your money should support what matters most to you — family, freedom, security, or purpose — not just numbers on paper.</p></div>
+        <div class="diff-card fade-in fade-in-delay-4"><div class="diff-card-num">04</div><div class="diff-card-icon"><svg class="icon"><use href="#i-trending"/></svg></div><h3>Holistic &amp; Cost-Conscious</h3><p>Covering retirement, aged care, tax, estate planning, insurance, investments, and mortgages — always with a focus on cost efficiency and long-term sustainability so your wealth works harder.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header">
+        <div><span class="section-label">Our Services</span><h2 class="section-title">Comprehensive advice for every life stage</h2></div>
+        <a href="/#contact" target="_top" class="btn btn-outline-dark">Get Started <svg><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-in"><div class="service-icon"><svg class="icon"><use href="#i-home"/></svg></div><div class="service-title">Retirement Planning</div><p class="service-desc">Analysing your lifestyle and financial objectives to ensure a smooth transition into retirement — on your terms and timeline.</p></div>
+        <div class="service-card fade-in fade-in-delay-1"><div class="service-icon"><svg class="icon"><use href="#i-users"/></svg></div><div class="service-title">Aged Care Advice</div><p class="service-desc">Navigate the complexities of the aged care system with clarity, dignity, and foresight during end-of-life planning.</p></div>
+        <div class="service-card fade-in fade-in-delay-2"><div class="service-icon"><svg class="icon"><use href="#i-trending"/></svg></div><div class="service-title">Investment Strategies</div><p class="service-desc">Our "Core &amp; Satellite" approach combines index funds with carefully selected active investments across all asset classes.</p></div>
+        <div class="service-card fade-in fade-in-delay-1"><div class="service-icon"><svg class="icon"><use href="#i-file-text"/></svg></div><div class="service-title">Tax Planning</div><p class="service-desc">Proactive tax strategies that keep more of your wealth working for you — net-of-tax performance is our true measure.</p></div>
+        <div class="service-card fade-in fade-in-delay-2"><div class="service-icon"><svg class="icon"><use href="#i-book-open"/></svg></div><div class="service-title">Estate Planning</div><p class="service-desc">Wills, asset distribution, and legacy planning reviewed after every major life event — marriage, divorce, retirement.</p></div>
+        <div class="service-card fade-in fade-in-delay-3"><div class="service-icon"><svg class="icon"><use href="#i-shield"/></svg></div><div class="service-title">Wealth Protection</div><p class="service-desc">Income Protection, Life Insurance, TPD, and Trauma cover — the right protection for your circumstances, no more and no less.</p></div>
+        <div class="service-card fade-in"><div class="service-icon"><svg class="icon"><use href="#i-briefcase"/></svg></div><div class="service-title">Superannuation</div><p class="service-desc">Modern retirement requires more than the government guarantee. We build strategies for true financial independence.</p></div>
+        <div class="service-card fade-in fade-in-delay-1"><div class="service-icon"><svg class="icon"><use href="#i-target"/></svg></div><div class="service-title">Debt Strategies</div><p class="service-desc">Tailored budgeting and repayment plans for mortgages, credit cards, and education loans — paired with smart savings.</p></div>
+        <div class="service-card fade-in fade-in-delay-2"><div class="service-icon"><svg class="icon"><use href="#i-brain"/></svg></div><div class="service-title">Money Coaching</div><p class="service-desc">One-on-one behavioural coaching to transform your relationship with money, build confidence, and change unhelpful habits.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section id="philosophy">
+    <div class="container">
+      <div class="philosophy-grid">
+        <div class="philosophy-content fade-in">
+          <span class="section-label">Our Philosophy</span>
+          <h2 class="section-title">Protect &amp; Grow with Consistency</h2>
+          <div class="divider-red"></div>
+          <p>Superior long-term investment performance comes through disciplined asset allocation and diversification — the greatest single driver of financial success. Our "Core &amp; Satellite" strategy reduces costs and spreads risk without sacrificing growth potential.</p>
+          <p>For insurance, our philosophy is equally clear: transparent, ethical, and client-focused advice that empowers you to make informed decisions. We believe informed clients make better decisions — so we educate first and recommend second.</p>
+          <a href="Value-of-advice.pdf" target="_blank" class="btn btn-primary" style="margin-top:12px;"><svg><use href="#i-download"/></svg> Download Value of Advice</a>
+        </div>
+        <div class="philosophy-pillars fade-in fade-in-delay-1">
+          <div class="pillar"><div class="pillar-icon"><svg class="icon"><use href="#i-globe"/></svg></div><div class="pillar-title">Diversification First</div><p class="pillar-desc">Asset allocation is the greatest driver of long-term performance — we build portfolios with true diversification.</p></div>
+          <div class="pillar"><div class="pillar-icon"><svg class="icon"><use href="#i-trending"/></svg></div><div class="pillar-title">Core &amp; Satellite</div><p class="pillar-desc">Low-cost index core plus carefully selected satellite holdings for tax efficiency and resilience.</p></div>
+          <div class="pillar"><div class="pillar-icon"><svg class="icon"><use href="#i-file-text"/></svg></div><div class="pillar-title">Net-of-Tax Returns</div><p class="pillar-desc">True performance is measured after tax. We design portfolios with tax efficiency baked in from day one.</p></div>
+          <div class="pillar"><div class="pillar-icon"><svg class="icon"><use href="#i-clock"/></svg></div><div class="pillar-title">Long-Term Discipline</div><p class="pillar-desc">Markets reward patience. Annual reviews and disciplined rebalancing keep portfolios aligned with your goals.</p></div>
+          <div class="pillar"><div class="pillar-icon"><svg class="icon"><use href="#i-shield"/></svg></div><div class="pillar-title">Client-Centric Insurance</div><p class="pillar-desc">Clear, ethical insurance advice tailored to your circumstances — no conflicts of interest, no unnecessary cover.</p></div>
+          <div class="pillar"><div class="pillar-icon"><svg class="icon"><use href="#i-book-open"/></svg></div><div class="pillar-title">Education &amp; Empowerment</div><p class="pillar-desc">We translate complex concepts into plain language so you stay confident through market volatility.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container">
+      <div class="process-header fade-in">
+        <span class="section-label">How It Works</span>
+        <h2 class="section-title">Your journey to financial clarity</h2>
+        <p class="section-subtitle">A straightforward, supportive process — from first conversation to lifelong partnership.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step fade-in"><div class="step-number">1</div><div class="step-title">Discovery Call</div><p class="step-desc">A complimentary conversation to understand your goals, life stage, and what financial success really looks like for you.</p></div>
+        <div class="process-step fade-in fade-in-delay-1"><div class="step-number">2</div><div class="step-title">Deep Analysis</div><p class="step-desc">We review your full financial picture — assets, debts, super, insurance, tax position, and money behaviours.</p></div>
+        <div class="process-step fade-in fade-in-delay-2"><div class="step-number">3</div><div class="step-title">Your Strategy</div><p class="step-desc">Receive a tailored Statement of Advice that aligns with your values, goals, and life stage — with full transparency on costs.</p></div>
+        <div class="process-step fade-in fade-in-delay-3"><div class="step-number">4</div><div class="step-title">Ongoing Partnership</div><p class="step-desc">Annual reviews, ongoing coaching, and proactive communication as your life evolves — we grow with you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS — Edit text directly in this HTML to update reviews -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header fade-in">
+        <span class="section-label">Client Reviews</span>
+        <h2 class="section-title">What our clients say</h2>
+        <p class="section-subtitle" style="margin:0 auto;">Hear from people who have trusted Stu with their financial futures.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars"><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg></div>
+          <p class="testimonial-text">"I've been with Stu for over 22 years and the one thing I have always valued is his financial knowledge and continuing studies, ensuring his advice is always current. He has always respected my individual risk tolerance and never pushed me into decisions I wasn't comfortable with. Truly informed, balanced and current financial advice."</p>
+          <div class="testimonial-author"><div class="author-avatar">S</div><div><div class="author-name">Sharon</div><div class="author-title">Client for 22 years &bull; Townsville</div></div></div>
+        </div>
+        <div class="testimonial-card fade-in fade-in-delay-1">
+          <div class="testimonial-stars"><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg></div>
+          <p class="testimonial-text">"Stu doesn't just hand you a financial plan and disappear. He genuinely cares about helping you understand your relationship with money. The coaching approach made all the difference — I now understand why I make the financial decisions I do, and how to make better ones."</p>
+          <div class="testimonial-author"><div class="author-avatar">MR</div><div><div class="author-name">Michael R.</div><div class="author-title">Business Owner &bull; Townsville</div></div></div>
+        </div>
+        <div class="testimonial-card fade-in fade-in-delay-2">
+          <div class="testimonial-stars"><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg></div>
+          <p class="testimonial-text">"Finally, an advisor who speaks plainly and puts our needs first. Stu's retirement planning advice was comprehensive, honest, and tailored exactly to our situation. He helped us navigate super, aged care considerations, and estate planning all at once — and made it feel manageable."</p>
+          <div class="testimonial-author"><div class="author-avatar">JL</div><div><div class="author-name">Jenny &amp; Les</div><div class="author-title">Retired couple &bull; Townsville</div></div></div>
+        </div>
+      </div>
+      <div class="testimonials-footer fade-in">
+        <div class="overall-rating">
+          <div class="rating-number">5.0</div>
+          <div class="rating-details">
+            <div class="rating-stars"><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg><svg class="icon icon-sm"><use href="#i-star"/></svg></div>
+            <div class="rating-label">Based on client reviews &bull; Heart Financial Advisers, Townsville</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Sticky nav color swap (only when scrolled within this iframe)
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+    function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth anchor scroll (in-iframe links only; target="_top" links bubble to parent)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.length < 2) return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 84;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
